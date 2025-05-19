@@ -5,7 +5,7 @@ import { SiMongodb, SiExpress, SiReact, SiNextdotjs, SiTailwindcss, SiNeo4J, SiP
 export const projects = [
   {
     name: "Fintrack",
-    videoUrl: "https://drive.google.com/file/d/1hdtn0E2K-6UneMghP7tB_D8pyBhjJw65/view?usp=sharing",
+    videoUrl: "/videos/fintrack.mp4",
     description:
       "FinTrack is a smart financial tracking platform with multi-account support, AI receipt scanning, recurring transactions, and interactive dashboards.",
     githubLink: "https://github.com/AnUrAg13ui/Fintrack.git",
