@@ -140,7 +140,7 @@ const About = () => {
                   <span className="text-gray-600 dark:text-gray-300">Feb, 2024 –May, 2024</span>
                   <br />
                   <br />
-                  <span className="text-gray-600 dark:text-gray-300">As aProgrammeratAnchorSoftware,Iplayed apivotalrole in developing embeddedsystemsand software/hardware
+                  <span className="text-gray-600 dark:text-gray-300">As a Programmer at Anchor Software, I played a pivotal role in developing embedded systems and software/hardware
 solutions.</span>
                 </li>
             </div>
