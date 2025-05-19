@@ -5,7 +5,7 @@ import { SiMongodb, SiExpress, SiReact, SiNextdotjs, SiTailwindcss, SiNeo4J, SiP
 export const projects = [
   {
     name: "Fintrack",
-    videoUrl: "/videos/fintrack.mp4",
+    videoUrl: "/videos/Fintrack.mp4",
     description:
       "FinTrack is a smart financial tracking platform with multi-account support, AI receipt scanning, recurring transactions, and interactive dashboards.",
     githubLink: "https://github.com/AnUrAg13ui/Fintrack.git",
@@ -20,7 +20,7 @@ export const projects = [
   },
   {
     name: "Fraud Buster",
-    videoUrl: "/videos/fraudBuster.mp4",
+    videoUrl: "/videos/FraudBuster.mp4",
     description:
       "Fraud Buster is an intelligent system that detects and prevents fraudulent Insurance  using machine learning and Python ML related Libraries.",
     githubLink: "https://github.com/AnUrAg13ui/fraudbuster.git",
