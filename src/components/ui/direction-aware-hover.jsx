@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -10,17 +10,15 @@ export const DirectionAwareHover = ({
   children,
   childrenClassName,
   videoClassName,
-  className
+  className,
 }) => {
   const ref = useRef(null);
   const [direction, setDirection] = useState("left");
-  const [videoError, setVideoError] = useState(false); // State to track video load error
+  const [videoError, setVideoError] = useState(false);
 
   const handleMouseEnter = (event) => {
     if (!ref.current) return;
-
     const direction = getDirection(event, ref.current);
-    console.log("direction", direction);
     switch (direction) {
       case 0:
         setDirection("top");
@@ -36,7 +34,6 @@ export const DirectionAwareHover = ({
         break;
       default:
         setDirection("left");
-        break;
     }
   };
 
@@ -49,7 +46,7 @@ export const DirectionAwareHover = ({
   };
 
   const handleVideoError = () => {
-    setVideoError(true); // Set videoError to true if the video fails to load
+    setVideoError(true);
   };
 
   return (
@@ -59,24 +56,28 @@ export const DirectionAwareHover = ({
       className={cn(
         "md:h-[20rem] w-[30rem] h-[17rem] md:w-[30rem] mb-8 bg-transparent shadow-md shadow-gray-700 rounded-lg overflow-hidden group/card relative",
         className
-      )}>
+      )}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           className="relative h-full w-full"
           initial="initial"
           whileHover={direction}
-          exit="exit">
+          exit="exit"
+        >
+          {/* Overlay — always visible on mobile, hover on desktop */}
           <motion.div
-            className="group-hover/card:block hidden absolute inset-0 w-full h-full bg-black/60 z-10 transition duration-500" />
+            className="absolute inset-0 w-full h-full bg-black/60 z-10 transition duration-500
+                       opacity-100 md:opacity-0 md:group-hover/card:opacity-100"
+          />
+
+          {/* Video or Fallback */}
           <motion.div
             variants={variants}
             className="h-full w-full relative"
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
-            }}>
+            transition={{ duration: 0.2, ease: "easeOut" }}
+          >
             {videoError ? (
-              // Fallback content if the video doesn't load
               <div className="h-full w-full bg-gray-500 text-white flex justify-center items-center">
                 <p>{altContent || "Video could not be loaded"}</p>
               </div>
@@ -93,13 +94,17 @@ export const DirectionAwareHover = ({
               </video>
             )}
           </motion.div>
+
+          {/* Text Content — always visible on mobile, hover on desktop */}
           <motion.div
             variants={textVariants}
-            transition={{
-              duration: 0.5,
-              ease: "easeOut",
-            }}
-            className={cn("text-white absolute bottom-4 left-4 z-40", childrenClassName)}>
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className={cn(
+              "text-white absolute bottom-4 left-4 z-40",
+              "opacity-100 md:opacity-0 md:group-hover/card:opacity-100",
+              childrenClassName
+            )}
+          >
             {children}
           </motion.div>
         </motion.div>
@@ -108,53 +113,21 @@ export const DirectionAwareHover = ({
   );
 };
 
+// Animation Variants
 const variants = {
-  initial: {
-    x: 0,
-  },
-  exit: {
-    x: 0,
-    y: 0,
-  },
-  top: {
-    y: 20,
-  },
-  bottom: {
-    y: -20,
-  },
-  left: {
-    x: 20,
-  },
-  right: {
-    x: -20,
-  },
+  initial: { x: 0 },
+  exit: { x: 0, y: 0 },
+  top: { y: 20 },
+  bottom: { y: -20 },
+  left: { x: 20 },
+  right: { x: -20 },
 };
 
 const textVariants = {
-  initial: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  exit: {
-    y: 0,
-    x: 0,
-    opacity: 0,
-  },
-  top: {
-    y: -20,
-    opacity: 1,
-  },
-  bottom: {
-    y: 2,
-    opacity: 1,
-  },
-  left: {
-    x: -2,
-    opacity: 1,
-  },
-  right: {
-    x: 20,
-    opacity: 1,
-  },
+  initial: { y: 0, x: 0, opacity: 0 },
+  exit: { y: 0, x: 0, opacity: 0 },
+  top: { y: -20, opacity: 1 },
+  bottom: { y: 2, opacity: 1 },
+  left: { x: -2, opacity: 1 },
+  right: { x: 20, opacity: 1 },
 };
